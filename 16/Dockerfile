@@ -11,5 +11,4 @@ WORKDIR     /home/container
 
 COPY        ./entrypoint.sh /entrypoint.sh
 COPY        ./start.sh /start.sh
-RUN        chmod a+x start.sh
 CMD         [ "/bin/bash", "/entrypoint.sh" ]

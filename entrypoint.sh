@@ -18,4 +18,36 @@ MODIFIED_STARTUP=$(echo -e ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')
 echo -e "${CYAN}STARTUP /home/container: ${MODIFIED_STARTUP} ${RESET_COLOR}"
 # Run the Server
 # shellcheck disable=SC2086
+
+clear
+
+sleep 1.5
+
+echo -e "\e[92m* \e[39m[\e[94mINFO\e[39m] Server \e[4m\e[95mStats\e[39m\e[0m"
+
+echo -e ""
+
+sleep 1.5
+
+echo -e "\e[92m* \e[39m[\e[92mSTATS\e[39m] RAM ->  \e[4m\e[95m"${SERVER_MEMORY}
+
+sleep 1
+
+echo -e "\e[92m* \e[39m[\e[92mSTATS\e[39m] LOCATION ->  \e[4m\e[95m"${P_SERVER_LOCATION}
+
+sleep 1
+
+echo -e "\e[92m* \e[39m[\e[92mSTATS\e[39m] SERVER ID ->  \e[4m\e[95m"${P_SERVER_UUID}
+
+sleep 1
+
+echo -e "\e[92m* \e[39m[\e[92mSTATS\e[39m] SERVER IP ->  \e[4m\e[95m"${SERVER_IP}
+
+sleep 1
+
+echo -e "\e[92m* \e[39m[\e[92mSTATS\e[39m] SERVER PORT ->  \e[4m\e[95m"${SERVER_PORT}
+
+
+
+
 eval ${MODIFIED_STARTUP}
