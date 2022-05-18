@@ -58,7 +58,7 @@ echo -e "\e[92m* \e[39m[\e[92mSTATS\e[39m] SERVER PORT ->  \e[4m\e[95m"${SERVER_
 
 sleep 1
 
-echo -e "\e[92m* \e[39m[\e[92mSTATS\e[39m] NODEJS VERISON ->  \e[4m\e[95m"${NODEJS_VERSION}
+echo -e "\e[92m* \e[39m[\e[92mSTATS\e[39m] NODEJS VERISON ->  \e[4m\e[95m"${NODE_VERSION}
 
 sleep 1.5
 
