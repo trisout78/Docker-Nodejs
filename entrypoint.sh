@@ -8,8 +8,6 @@ RESET_COLOR='\033[0m'
 # Set environment variable that holds the Internal Docker IP
 INTERNAL_IP=$(ip route get 1 | awk '{print $(NF-2);exit}')
 export INTERNAL_IP
-export ${start_command1}
-export ${start_command2}
 
 # Print Node.js Version
 node -v
