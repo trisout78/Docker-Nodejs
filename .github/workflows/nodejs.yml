@@ -37,9 +37,9 @@ jobs:
           password: ${{ secrets.REGISTRY_TOKEN }}
       - uses: docker/build-push-action@v2
         with:
-          context: ./nodejs
-          file: ./nodejs/${{ matrix.tag }}/Dockerfile
+          context: ./
+          file: ./${{ matrix.tag }}/Dockerfile
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/software-noob/pterodactyl-images:nodejs_${{ matrix.tag }}
+            ghcr.io/luxxy-gf/nodejs_${{ matrix.tag }}
