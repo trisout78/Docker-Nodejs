@@ -14,7 +14,7 @@ node -v
 
 # Replace Startup Variables
 # shellcheck disable=SC2086
-echo -e "${CYAN}STARTUP /home/container: ./start.sh ${RESET_COLOR}"
+echo -e "${CYAN}STARTUP /home/container: /start.sh ${RESET_COLOR}"
 # Run the Server
 # shellcheck disable=SC2086
 
@@ -49,4 +49,4 @@ echo -e "\e[92m* \e[39m[\e[92mSTATS\e[39m] SERVER PORT ->  \e[4m\e[95m"${SERVER_
 
 
 
-eval 'start.sh'
+eval '/start.sh'
