@@ -1,8 +1,6 @@
-echo {{start_command1}}
-echo {{start_command2}}
-echo ${start_command1}
-echo ${start_command2}
-
-
-eval {{start_command1}}
-eval {{start_command2}}
+echo running start.sh
+eval ${start_command1}
+if [ -n "${start_command2}" ]; then
+    eval ${start_command2}
+fi
+echo there no start command2
