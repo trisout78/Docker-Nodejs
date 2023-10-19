@@ -1,4 +1,4 @@
-FROM        node:18-bookworm-slim
+FROM        node:18-buster-slim
 
 RUN         apt update \
             && apt -y install ffmpeg iproute2 git sqlite3 python3 tzdata ca-certificates dnsutils build-essential make gcc g++ \
