@@ -28,6 +28,9 @@ jobs:
           - 18
           - 19
           - 20
+          - 21
+          - 22
+          - 23
     steps:
       - uses: actions/checkout@v2
       - uses: docker/setup-buildx-action@v1
