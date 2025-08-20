@@ -69,21 +69,21 @@ print_system_box() {
   local line_node="Node.js   : ${node_ver}"
   local line_npm="npm       : ${npm_ver}"
 
-  # Determine width (cap at 76)
+  # Determine width (cap at 76) based only on content (no left '# ' prefix now)
   local width max=0
   for l in "$line_cpu_model" "$line_cpu_usage" "$line_mem" "$line_node" "$line_npm"; do
     [ ${#l} -gt $max ] && max=${#l}
   done
   [ $max -gt 76 ] && max=76
-  width=$((max + 2))
+  width=$max
 
   local border=$(printf '%*s' "$width" '' | tr ' ' '#')
   echo "$border"
-  printf '# %-'$((width - 2))'s\n' "$line_cpu_model"
-  printf '# %-'$((width - 2))'s\n' "$line_cpu_usage"
-  printf '# %-'$((width - 2))'s\n' "$line_mem"
-  printf '# %-'$((width - 2))'s\n' "$line_node"
-  printf '# %-'$((width - 2))'s\n' "$line_npm"
+  printf '%-'$width's\n' "$line_cpu_model"
+  printf '%-'$width's\n' "$line_cpu_usage"
+  printf '%-'$width's\n' "$line_mem"
+  printf '%-'$width's\n' "$line_node"
+  printf '%-'$width's\n' "$line_npm"
   echo "$border"
   echo
 }
