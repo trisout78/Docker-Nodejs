@@ -1,4 +1,4 @@
-FROM        node:20-buster-slim
+FROM        node:20-bullseye-slim
 
 RUN         apt update \
             && apt -y install ffmpeg iproute2 git sqlite3 python3 tzdata ca-certificates dnsutils build-essential make gcc g++ \
