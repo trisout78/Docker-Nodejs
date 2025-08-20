@@ -78,8 +78,6 @@ print_system_box() {
   local border=$(printf '%*s' "$width" '' | tr ' ' '#')
   echo "$border"
   printf '%-'$width's\n' "$line_cpu_model"
-  printf '%-'$width's\n' "$line_cpu_usage"
-  printf '%-'$width's\n' "$line_mem"
   printf '%-'$width's\n' "$line_node"
   printf '%-'$width's\n' "$line_npm"
   echo "$border"
