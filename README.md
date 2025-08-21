@@ -9,7 +9,7 @@ The following Node.js versions are available:
 - `ghcr.io/trisout78/nodejs_20:latest` - Node.js v20 (LTS)
 - `ghcr.io/trisout78/nodejs_21:latest` - Node.js v21
 - `ghcr.io/trisout78/nodejs_22:latest` - Node.js v22 (LTS)
-- `ghcr.io/trisout78/nodejs_23:latest` - Node.js v23 (Current)
+- `ghcr.io/trisout78/nodejs_23:latest` - Node.js v23
 - `ghcr.io/trisout78/nodejs_24:latest` - Node.js v24 (Current)
 
 ## Features
@@ -42,16 +42,6 @@ docker run -e START_COMMAND1="npm install" -e START_COMMAND2="npm start" ghcr.io
 ```bash
 docker run -v $(pwd):/home/container/app -w /home/container/app ghcr.io/trisout78/nodejs_24:latest
 ```
-
-## Making Packages Public
-
-If you encounter "unauthorized" errors when pulling images, the packages need to be made public:
-
-1. Go to [GitHub Packages](https://github.com/users/trisout78/packages)
-2. Select the nodejs package you want to make public
-3. Go to "Package settings"
-4. Scroll down to "Danger Zone"
-5. Click "Change visibility" and select "Public"
 
 ## Building Locally
 
