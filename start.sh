@@ -86,15 +86,9 @@ print_system_box() {
 
 print_system_box
 
-# Trap SIGINT and SIGTERM to gracefully stop child processes
-trap 'kill $(jobs -p); exit' SIGINT SIGTERM
-
 if [ -n "${START_COMMAND1}" ]; then 
-    eval "${START_COMMAND1}" &
+    eval "${START_COMMAND1}"
 fi
 if [ -n "${START_COMMAND2}" ]; then
-    eval "${START_COMMAND2}" &
+    eval "${START_COMMAND2}"
 fi
-
-# Wait for all background processes to finish
-wait
