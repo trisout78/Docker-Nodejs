@@ -86,9 +86,38 @@ print_system_box() {
 
 print_system_box
 
+# Setup traps to forward signals to child process
+terminate() {
+  echo "Received signal, forwarding to child (PID=$child_pid)..." >&2
+  if [ -n "$child_pid" ] && kill -0 "$child_pid" 2>/dev/null; then
+    kill -TERM "$child_pid"
+  fi
+}
+trap terminate INT TERM
+
+cmds=()
 if [ -n "${START_COMMAND1}" ]; then 
-    eval "${START_COMMAND1}"
+    cmds+=("${START_COMMAND1}")
 fi
 if [ -n "${START_COMMAND2}" ]; then
-    eval "${START_COMMAND2}"
+    cmds+=("${START_COMMAND2}")
+fi
+
+if [ ${#cmds[@]} -eq 0 ]; then
+  echo "No START_COMMAND variables provided." >&2
+  exit 0
+fi
+
+# If multiple commands, chain them with && so failure stops sequence
+full_cmd=$(printf ' && %s' "${cmds[@]}")
+full_cmd=${full_cmd:4}
+echo "Executing: $full_cmd" >&2
+
+# Run command in background then wait to handle traps; use exec if single command.
+if [ ${#cmds[@]} -eq 1 ]; then
+  exec bash -lc "${full_cmd}"
+else
+  bash -lc "${full_cmd}" &
+  child_pid=$!
+  wait $child_pid
 fi

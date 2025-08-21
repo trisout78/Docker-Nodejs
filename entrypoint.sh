@@ -16,8 +16,8 @@ node -v
 # shellcheck disable=SC2086
 echo -e "${CYAN}STARTUP /home/container: /start.sh ${RESET_COLOR}"
 # Run the Server
-# shellcheck disable=SC2086
+# Replace shell with start script so that the eventual app becomes PID 1 and receives signals (SIGINT/SIGTERM).
 
 clear
 
-eval '/start.sh'
+exec /start.sh
