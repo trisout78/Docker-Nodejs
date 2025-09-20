@@ -3,9 +3,7 @@ FROM        node:22-bookworm-slim
 # Set environment variables to avoid interactive prompts
 ENV         DEBIAN_FRONTEND=noninteractive
 
-# Pre-accept Microsoft fonts EULA
-RUN         echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | debconf-set-selections
-
+# Install basic packages first
 RUN         apt-get update \
             && apt-get upgrade -y \
             && apt-get install -y --no-install-recommends \
@@ -22,16 +20,34 @@ RUN         apt-get update \
                 make \
                 gcc \
                 g++ \
-                ttf-mscorefonts-installer \
+            && apt-get clean \
+            && rm -rf /var/lib/apt/lists/*
+
+# Install development libraries separately
+RUN         apt-get update \
+            && apt-get install -y --no-install-recommends \
                 libmagick++-dev \
                 libvips-dev \
                 libzxing-dev \
             && apt-get clean \
-            && rm -rf /var/lib/apt/lists/* \
-            && npm config set strict-ssl false \
+            && rm -rf /var/lib/apt/lists/*
+
+# Install alternative fonts that don't require EULA acceptance
+RUN         apt-get update \
+            && apt-get install -y --no-install-recommends \
+                fonts-liberation \
+                fonts-dejavu-core \
+                fontconfig \
+            && apt-get clean \
+            && rm -rf /var/lib/apt/lists/*
+
+# Configure npm and install global packages
+RUN         npm config set strict-ssl false \
             && npm install -g npm@latest \
-            && npm install -g pnpm@latest-10 \
-            && useradd -m -d /home/container container
+            && npm install -g pnpm@latest-10
+
+# Create container user
+RUN         useradd -m -d /home/container container
 
 USER        container
 ENV         USER=container HOME=/home/container
