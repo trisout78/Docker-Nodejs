@@ -1,9 +1,7 @@
 FROM        node:22-bookworm-slim
 
 RUN         apt update \
-            && apt -y install ffmpeg iproute2 git sqlite3 python3 tzdata ca-certificates cmake dnsutils build-essential make gcc g++ ttf-mscorefonts-installer libmagick++-dev libvips-dev libzxing-dev \
-            && npm -g install npm@latest \
-            && npm install -g pnpm@latest-10 \
+            && apt -y install ffmpeg iproute2 git sqlite3 python3 tzdata ca-certificates dnsutils build-essential make gcc g++ \
             && useradd -m -d /home/container container
 
 USER        container
