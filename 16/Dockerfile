@@ -1,4 +1,4 @@
-FROM        node:20-bookworm-slim
+FROM        node:16-bullseye-slim
 
 # Avoid interactive prompts during apt operations
 ENV         DEBIAN_FRONTEND=noninteractive
@@ -44,7 +44,7 @@ RUN         apt-get update \
 # Node package managers
 RUN         npm config set strict-ssl false \
             && npm install -g npm@latest \
-            && npm install -g pnpm@8
+            && npm install -g pnpm@latest-10
 
 # Create non-root user
 RUN         useradd -m -d /home/container container
