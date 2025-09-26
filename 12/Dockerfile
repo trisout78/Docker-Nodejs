@@ -28,28 +28,6 @@ RUN         apt-get update \
             && apt-get clean \
             && rm -rf /var/lib/apt/lists/*
 
-# Development libraries
-RUN         apt-get update \
-            && apt-get install -y --no-install-recommends \
-                libmagick++-dev \
-                libvips-dev \
-                libzxing-dev \
-            && apt-get clean \
-            && rm -rf /var/lib/apt/lists/*
-
-# Fonts without EULA requirements
-RUN         apt-get update \
-            && apt-get install -y --no-install-recommends \
-                fonts-liberation \
-                fonts-dejavu-core \
-                fontconfig \
-            && apt-get clean \
-            && rm -rf /var/lib/apt/lists/*
-
-# Node package managers (do not update npm on Node 12)
-RUN         npm config set strict-ssl false \
-            && npm install -g pnpm@7
-
 # Create non-root user
 RUN         useradd -m -d /home/container container
 
