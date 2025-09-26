@@ -1,4 +1,4 @@
-FROM        node:15-buster-slim
+FROM        node:15-bookworm-slim
 
 # Avoid interactive prompts during apt operations
 ENV         DEBIAN_FRONTEND=noninteractive
