@@ -1,4 +1,4 @@
-FROM        node:18-bookworm-slim
+FROM        node:18-bullseye-slim
 
 # Avoid interactive prompts during apt operations
 ENV         DEBIAN_FRONTEND=noninteractive
@@ -41,9 +41,8 @@ RUN         apt-get update \
             && apt-get clean \
             && rm -rf /var/lib/apt/lists/*
 
-# Node package managers
+# Node package managers (do not update npm on Node 18)
 RUN         npm config set strict-ssl false \
-            && npm install -g npm@latest \
             && npm install -g pnpm@8
 
 # Create non-root user

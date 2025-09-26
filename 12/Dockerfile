@@ -1,7 +1,12 @@
-FROM        node:12-bookworm-slim
+FROM        node:12-buster-slim
 
 # Avoid interactive prompts during apt operations
 ENV         DEBIAN_FRONTEND=noninteractive
+
+# Configure archived Debian buster repositories (EOL)
+RUN         echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99no-check-valid \
+            && sed -i 's|deb.debian.org/debian|archive.debian.org/debian|g; s|security.debian.org|archive.debian.org|g' /etc/apt/sources.list \
+            && sed -i '/buster-updates/d' /etc/apt/sources.list
 
 # Base system packages
 RUN         apt-get update \
@@ -41,9 +46,8 @@ RUN         apt-get update \
             && apt-get clean \
             && rm -rf /var/lib/apt/lists/*
 
-# Node package managers
+# Node package managers (do not update npm on Node 12)
 RUN         npm config set strict-ssl false \
-            && npm install -g npm@latest \
             && npm install -g pnpm@7
 
 # Create non-root user

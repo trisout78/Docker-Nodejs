@@ -6,6 +6,9 @@ Pre-built Node.js Docker images with common development tools and utilities.
 
 The following Node.js versions are available:
 
+- `ghcr.io/trisout78/nodejs_12:latest` - Node.js v12 (EOL, provided for legacy use)
+- `ghcr.io/trisout78/nodejs_16:latest` - Node.js v16 (LTS, legacy)
+- `ghcr.io/trisout78/nodejs_18:latest` - Node.js v18 (LTS, legacy)
 - `ghcr.io/trisout78/nodejs_20:latest` - Node.js v20 (LTS)
 - `ghcr.io/trisout78/nodejs_21:latest` - Node.js v21
 - `ghcr.io/trisout78/nodejs_22:latest` - Node.js v22 (LTS)
@@ -52,7 +55,7 @@ To build the images locally:
 docker build -t nodejs_24 -f 24/Dockerfile .
 
 # Build all versions
-for version in 20 21 22 23 24; do
+for version in 12 16 18 20 21 22 23 24; do
   docker build -t nodejs_$version -f $version/Dockerfile .
 done
 ```
