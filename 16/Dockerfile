@@ -6,7 +6,7 @@ ENV         DEBIAN_FRONTEND=noninteractive
 # Base system packages
 RUN         apt-get update \
             && apt-get upgrade -y \
-            && apt-get install -y --no-install-recommends \
+            && apt-get install -y --fix-missing --no-install-recommends \
                 ffmpeg \
                 iproute2 \
                 git \
