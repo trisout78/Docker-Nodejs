@@ -43,7 +43,7 @@ RUN         apt-get update \
 
 # Node package managers
 RUN         npm config set strict-ssl false \
-            && npm install -g npm@latest \
+            && npm install -g npm@11 \
             && npm install -g pnpm@8
 
 # Create non-root user
