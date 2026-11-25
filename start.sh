@@ -1,5 +1,55 @@
 #!/usr/bin/env bash
 
+###############################################################################
+# Minimum Node.js version: refuse to start on end-of-life / vulnerable releases
+###############################################################################
+
+MIN_NODE_MAJOR=22
+
+check_node_version() {
+  local node_ver node_major
+  node_ver=$(node -v 2>/dev/null) || return 0
+  node_major=${node_ver#v}
+  node_major=${node_major%%.*}
+  [[ "$node_major" =~ ^[0-9]+$ ]] || return 0
+  [ "$node_major" -ge "$MIN_NODE_MAJOR" ] && return 0
+
+  printf '\033[1;31m'
+  cat <<'ART'
+ __        ___    ____  _   _ ___ _   _  ____
+ \ \      / / \  |  _ \| \ | |_ _| \ | |/ ___|
+  \ \ /\ / / _ \ | |_) |  \| || ||  \| | |  _
+   \ V  V / ___ \|  _ <| |\  || || |\  | |_| |
+    \_/\_/_/   \_\_| \_\_| \_|___|_| \_|\____|
+
+ART
+  cat <<EOF
+################################################################################
+#
+#   /!\  VERSION VULNÉRABLE - DÉMARRAGE BLOQUÉ  /!\\
+#
+#   Node.js ${node_ver} n'est plus maintenu et ne reçoit plus de correctifs
+#   de sécurité. Le serveur ne démarrera pas avec cette version.
+#
+#   >>> Merci de passer à Node.js ${MIN_NODE_MAJOR} minimum. <<<
+#
+#   ------------------------------------------------------------------------
+#
+#   /!\  VULNERABLE VERSION - STARTUP BLOCKED  /!\\
+#
+#   Node.js ${node_ver} is end-of-life and no longer receives security fixes.
+#   The server will not start with this version.
+#
+#   >>> Please upgrade to Node.js ${MIN_NODE_MAJOR} or newer. <<<
+#
+################################################################################
+EOF
+  printf '\033[0m\n'
+  exit 1
+}
+
+check_node_version
+
 # Banner ASCII TRISOUT
 cat <<'BANNER'
  _   _           _          _ ____  

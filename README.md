@@ -6,16 +6,22 @@ Pre-built Node.js Docker images with common development tools and utilities.
 
 The following Node.js versions are available:
 
-- `ghcr.io/trisout78/nodejs_12:latest` - Node.js v12 (EOL, provided for legacy use)
-- `ghcr.io/trisout78/nodejs_16:latest` - Node.js v16 (LTS, legacy)
-- `ghcr.io/trisout78/nodejs_18:latest` - Node.js v18 (LTS, legacy)
-- `ghcr.io/trisout78/nodejs_20:latest` - Node.js v20 (LTS)
-- `ghcr.io/trisout78/nodejs_21:latest` - Node.js v21
+- `ghcr.io/trisout78/nodejs_12:latest` - Node.js v12 (EOL, **blocked**)
+- `ghcr.io/trisout78/nodejs_16:latest` - Node.js v16 (EOL, **blocked**)
+- `ghcr.io/trisout78/nodejs_18:latest` - Node.js v18 (EOL, **blocked**)
+- `ghcr.io/trisout78/nodejs_20:latest` - Node.js v20 (EOL, **blocked**)
+- `ghcr.io/trisout78/nodejs_21:latest` - Node.js v21 (EOL, **blocked**)
 - `ghcr.io/trisout78/nodejs_22:latest` - Node.js v22 (LTS)
 - `ghcr.io/trisout78/nodejs_23:latest` - Node.js v23
 - `ghcr.io/trisout78/nodejs_24:latest` - Node.js v24 (LTS)
 - `ghcr.io/trisout78/nodejs_25:latest` - Node.js v25
 - `ghcr.io/trisout78/nodejs_26:latest` - Node.js v26 (Current)
+
+> [!WARNING]
+> **Node.js 22 minimum.** Images older than Node.js 22 are end-of-life and no longer receive
+> security fixes. They still exist so existing deployments get a clear message, but on startup
+> they print a vulnerability warning and exit with code `1` without running `START_COMMAND1` /
+> `START_COMMAND2`. Switch to `nodejs_22` or newer.
 
 ## Features
 
