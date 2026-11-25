@@ -21,11 +21,11 @@ The following Node.js versions are available:
 > **Node.js 22 minimum.** Images older than Node.js 22 are end-of-life and no longer receive
 > security fixes. They still exist so existing deployments get a clear message, but on startup
 > they print a vulnerability warning and exit with code `1` without running `START_COMMAND1` /
-> `START_COMMAND2`. Switch to `nodejs_22` or newer.
+> `START_COMMAND2`. They are minimal (no extra packages). Switch to `nodejs_22` or newer.
 
 ## Features
 
-Each image includes:
+Each supported image (Node.js 22+) includes:
 
 - Node.js (version-specific)
 - npm (latest version)
